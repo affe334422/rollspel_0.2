@@ -1,4 +1,6 @@
-﻿int hp = 10;
+﻿using System.Runtime.CompilerServices;
+
+int hp = 10;
 int hdmg = 2;
 int hkrit = 30;
 
@@ -29,7 +31,7 @@ int attack_number1 = int.Parse(Console.ReadLine());
             }
             ui(hp, hdmg);
             fui(fhp, fdmg);
-            Console.Write("läs och sen tryck enter");
+            Console.WriteLine("läs och sen tryck enter");
             Console.ReadLine();
         }
         if(fhp == 0){
@@ -48,7 +50,7 @@ int attack_number1 = int.Parse(Console.ReadLine());
         }
         ui(hp, hdmg);
         fui(fhp, fdmg);
-        Console.Write("läs och sen tryck enter");
+        Console.WriteLine("läs och sen tryck enter");
         Console.ReadLine();
     }
     if(hp == 0){
@@ -77,14 +79,39 @@ static void dmg(ref int hälsa, int skada, int krit){
     Random rnd = new Random();
     int skrit = rnd.Next(1,101);
     int jag_tror = hälsa;
+    string mes1 = "Du gör ";
+    string mes2 = " skada till råttan";
 
     if(skrit<=krit){ 
         hälsa = jag_tror - skada *2;
-        Console.WriteLine("Du gör " + skada + " skada till råttan");
+
+        foreach (char c in mes1){
+            Console.Write(c);
+            Thread.Sleep(100);
+        }
+        Console.Write(skada);
+
+        foreach (char c in mes2){
+            Console.Write(c);
+            Thread.Sleep(100);
+        }
+        Console.WriteLine("");
     }
     else{
         hälsa = jag_tror - skada;
-        Console.WriteLine("Du gör " + skada + " skada till råttan");
+
+        foreach (char c in mes1){
+            Console.Write(c);
+            Thread.Sleep(100);
+        }
+
+        Console.Write(skada);
+
+        foreach (char c in mes2){
+            Console.Write(c);
+            Thread.Sleep(100);
+        }
+        Console.WriteLine("");
     }
 }
 
@@ -92,13 +119,39 @@ static void f_dmg(ref int hälsa, int skada, int krit){
     Random rnd = new Random();
     int skrit = rnd.Next(1,101);
     int jag_tror = hälsa;
+    string mes1 = "Råttan gör ";
+    string mes2 = " skada till dig";
 
     if(skrit<=krit){ 
         hälsa = jag_tror - skada *2;
-        Console.WriteLine("Råttan gör "+ skada + " skada till dig");
+
+        foreach (char c in mes1){
+            Console.Write(c);
+            Thread.Sleep(100);
+        }
+
+        Console.Write(skada);
+
+        foreach (char c in mes2){
+            Console.Write(c);
+            Thread.Sleep(100);
+        }
+        Console.WriteLine("");
     }
     else{
         hälsa = jag_tror - skada;
-        Console.WriteLine("Råttan gör "+ skada + " skada till dig");
+
+        foreach (char c in mes1){
+            Console.Write(c);
+            Thread.Sleep(100);
+        }
+
+        Console.Write(skada);
+
+        foreach (char c in mes2){
+            Console.Write(c);
+            Thread.Sleep(100);
+        }
+        Console.WriteLine();
     }
 }
