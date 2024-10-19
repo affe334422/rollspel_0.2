@@ -12,3 +12,4 @@ C:\Users\alle07002\OneDrive - Växjö kommun\Skrivbordet\program\rollspel_0.2\ob
 C:\Users\alle07002\OneDrive - Växjö kommun\Skrivbordet\program\rollspel_0.2\obj\Debug\net8.0\rollspel_0.2.pdb
 C:\Users\alle07002\OneDrive - Växjö kommun\Skrivbordet\program\rollspel_0.2\obj\Debug\net8.0\rollspel_0.2.genruntimeconfig.cache
 C:\Users\alle07002\OneDrive - Växjö kommun\Skrivbordet\program\rollspel_0.2\obj\Debug\net8.0\ref\rollspel_0.2.dll
+C:\Users\alle07002\OneDrive - Växjö kommun\Skrivbordet\program\rollspel_0.2\obj\Debug\net8.0\rollspel_0.2.sourcelink.json
