@@ -15,7 +15,8 @@ fui(fhp, fdmg);
 
 while(fhp != 0 && hp != 0){
 
-Console.Write("skriv 1 sen tryck enter:");
+string enter = "skriv 1 sen tryck enter:";
+sakta(enter);
 int attack_number1 = int.Parse(Console.ReadLine());
 
     if(attack_number1 == 1){
@@ -31,8 +32,6 @@ int attack_number1 = int.Parse(Console.ReadLine());
             }
             ui(hp, hdmg);
             fui(fhp, fdmg);
-            Console.WriteLine("läs och sen tryck enter");
-            Console.ReadLine();
         }
         if(fhp == 0){
             break;
@@ -50,8 +49,6 @@ int attack_number1 = int.Parse(Console.ReadLine());
         }
         ui(hp, hdmg);
         fui(fhp, fdmg);
-        Console.WriteLine("läs och sen tryck enter");
-        Console.ReadLine();
     }
     if(hp == 0){
         break;
@@ -62,16 +59,30 @@ int attack_number1 = int.Parse(Console.ReadLine());
    
 
 static void ui(int ahp, int admg){
-    Console.WriteLine("Du:");
-    Console.WriteLine("hp "+ ahp);
-    Console.WriteLine("dmg "+ admg);
+    string mes1 = "Du:";
+    string mes2 = "hp "+ ahp;
+    string mes3 = "dmg "+ admg;
+
+    sakta(mes1);
+    Console.WriteLine("");
+    sakta(mes2);
+    Console.WriteLine("");
+    sakta(mes3);
+    Console.WriteLine("");
     Console.WriteLine("");
 }
 
 static void fui(int ahp, int admg){
-    Console.WriteLine("Råtta:");
-    Console.WriteLine("hp "+ ahp);
-    Console.WriteLine("dmg "+ admg);
+    string mes1 = "Råtta:";
+    string mes2 = "hp "+ ahp;
+    string mes3 = "dmg "+ admg;
+
+    sakta(mes1);
+    Console.WriteLine("");
+    sakta(mes2);
+    Console.WriteLine("");
+    sakta(mes3);
+    Console.WriteLine("");
     Console.WriteLine("");
 }
 
@@ -85,32 +96,21 @@ static void dmg(ref int hälsa, int skada, int krit){
     if(skrit<=krit){ 
         hälsa = jag_tror - skada *2;
 
-        foreach (char c in mes1){
-            Console.Write(c);
-            Thread.Sleep(100);
-        }
+        sakta(mes1);
+
         Console.Write(skada);
 
-        foreach (char c in mes2){
-            Console.Write(c);
-            Thread.Sleep(100);
-        }
+        sakta(mes2);
         Console.WriteLine("");
     }
     else{
         hälsa = jag_tror - skada;
 
-        foreach (char c in mes1){
-            Console.Write(c);
-            Thread.Sleep(100);
-        }
+        sakta(mes1);
 
         Console.Write(skada);
 
-        foreach (char c in mes2){
-            Console.Write(c);
-            Thread.Sleep(100);
-        }
+        sakta(mes2);
         Console.WriteLine("");
     }
 }
@@ -125,33 +125,28 @@ static void f_dmg(ref int hälsa, int skada, int krit){
     if(skrit<=krit){ 
         hälsa = jag_tror - skada *2;
 
-        foreach (char c in mes1){
-            Console.Write(c);
-            Thread.Sleep(100);
-        }
+        sakta(mes1);
 
         Console.Write(skada);
 
-        foreach (char c in mes2){
-            Console.Write(c);
-            Thread.Sleep(100);
-        }
+        sakta(mes2);
         Console.WriteLine("");
     }
     else{
         hälsa = jag_tror - skada;
 
-        foreach (char c in mes1){
-            Console.Write(c);
-            Thread.Sleep(100);
-        }
+        sakta(mes1);
 
         Console.Write(skada);
 
-        foreach (char c in mes2){
+        sakta(mes2);
+        Console.WriteLine("");
+    }
+}
+
+static void sakta(string mes){
+    foreach (char c in mes){
             Console.Write(c);
-            Thread.Sleep(100);
-        }
-        Console.WriteLine();
+            Thread.Sleep(50);
     }
 }
