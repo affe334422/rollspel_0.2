@@ -1,17 +1,13 @@
 ﻿using System.Runtime.CompilerServices;
-int hlvl = 1;
+int hlvl = 10;
 int hp = 5 + 5 * hlvl;
-int hdmg = hlvl + 2 * hlvl;
+int hdmg = 2 * hlvl + hlvl;
 int hkrit = 30;
-
-int flvl = hlvl;
-int fhp = 5 + 5 *flvl; 
-int fdmg = 2 * flvl;
-int fkrit = 30;
 
 int hvinst = 0;
 int fvinst = 0;
 
+fight_sekvens(ref hlvl, ref hp, ref hdmg, ref hkrit);
 fight_sekvens(ref hlvl, ref hp, ref hdmg, ref hkrit);
 
 
@@ -39,7 +35,7 @@ static void fight_sekvens(ref int lvl, ref int hp, ref int dubdmg, ref int crit)
         if(attack_number1 == 1){
             Console.WriteLine("");
             for(int a = 0; a != 1; a++){
-                dmg(ref fiende_hp, fiende_dmg, fiende_crit);
+                dmg(ref fiende_hp, hjälte_dmg, hjälte_crit);
                 if(fiende_hp <= 0){
                     fiende_hp = 0;
                     ui(hjälte_hp, hjälte_dmg, hjälte_lvl);
@@ -84,6 +80,10 @@ static void fight_sekvens(ref int lvl, ref int hp, ref int dubdmg, ref int crit)
         }
 
     }
+
+    hp = hjälte_hp;
+    dubdmg = hjälte_dmg;
+    lvl = hjälte_lvl;
 
 }
 
@@ -184,43 +184,40 @@ static void f_dmg(ref int hälsa, int skada, int krit){
 }
 
 static void healing(ref int hälsa, int lvl){
-    int hälsa1 = hälsa;
-    double hälsa2 = hälsa1;
-    int hälsa3 = hälsa;
+
     int max = 5 + 5 * lvl;
+    int potion = lvl + max / 3;
+    int mellan = 0;
+    double potion1 = lvl + max / 3;
     string mes1 = "Medans du healar ";
     string mes2 = " hp";
 
     int tid2 = 50;
 
-    hälsa1 = hälsa1 / 3;
-    hälsa2 = hälsa2 / 3;
-    
-    if(hälsa1 <= hälsa2 - 0.5){
-        hälsa = hälsa + hälsa1;
-        
-        if(hälsa >= 11){
-            hälsa = 10;
-            hälsa1 = max - hälsa3;
+    if(potion >= potion1 - 0.5){
+        hälsa = hälsa + potion;
+        if(hälsa >= max + 1){
+            mellan = hälsa - max;
+            potion = potion - mellan;
+            hälsa = max;
         }
-
-        sakta(mes1, tid2);
-        Console.Write(hälsa1);
+        sakta(mes1,tid2);
+        Console.Write(potion);
         sakta(mes2, tid2);
         Console.WriteLine("");
-    }
+    }    
     else{
-        hälsa = hälsa + hälsa1 + 1;
-        if(hälsa >= 11){
-            hälsa = 10;
-            hälsa1 = max - hälsa3;
+        hälsa = hälsa + potion + 1;
+        if(hälsa >= max + 1){
+            mellan = hälsa - max;
+            potion = potion - mellan;
+            hälsa = max;
         }
-        sakta(mes1, tid2);
-        Console.Write(hälsa1);
+        sakta(mes1,tid2);
+        Console.Write(potion);
         sakta(mes2, tid2);
         Console.WriteLine("");
     }
-    
 }
 
 static void sakta(string mes, int tid){

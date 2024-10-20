@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("rollspel_0.2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e94bd21d841c0aa8cb958c8a40002e2640ec01d9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2eceaf274a6be8553bcf977306618871278d2e5")]
 [assembly: System.Reflection.AssemblyProductAttribute("rollspel_0.2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("rollspel_0.2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
