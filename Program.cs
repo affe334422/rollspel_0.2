@@ -12,21 +12,26 @@ int fkrit = 30;
 int hvinst = 0;
 int fvinst = 0;
 
-for(int hur_många_gånger = 1; hur_många_gånger != 11; hur_många_gånger++){
-    if(hur_många_gånger == 1){
-        
-    }
-    Console.WriteLine("test " + hur_många_gånger);
-    för_att_nolla_någon_av_dem(ref hp, ref hdmg, hlvl);
-    för_att_nolla_någon_av_dem1(ref fhp, ref fdmg, flvl);
-    fkrit++;
-    
-    ui(hp, hdmg, hlvl);
-    fui(fhp, fdmg, flvl);
-    Console.WriteLine(fkrit);
+fight_sekvens(ref hlvl, ref hp, ref hdmg, ref hkrit);
 
-    while(fhp != 0 && hp != 0){
 
+static void fight_sekvens(ref int lvl, ref int hp, ref int dubdmg, ref int crit){
+    int hjälte_lvl = lvl;
+    int hjälte_hp = hp;
+    int hjälte_dmg = dubdmg;
+    int hjälte_crit = crit;
+
+    int fiende_lvl = lvl;
+    int fiende_hp = 5 + 5 * fiende_lvl;
+    int fiende_dmg = 2 * fiende_lvl;
+    int fiende_crit = 30;
+
+    Console.WriteLine("test");
+
+    ui(hjälte_hp, hjälte_dmg, hjälte_lvl);
+    fui(fiende_hp, fiende_dmg, fiende_lvl);
+
+    while(fiende_hp != 0 && hjälte_hp != 0){
         string enter = "skriv 1 för att attackera eller 2 för att öka ditt hp sen tryck enter:";
         sakta(enter, 50);
         int attack_number1 = int.Parse(Console.ReadLine());
@@ -34,57 +39,53 @@ for(int hur_många_gånger = 1; hur_många_gånger != 11; hur_många_gånger++){
         if(attack_number1 == 1){
             Console.WriteLine("");
             for(int a = 0; a != 1; a++){
-                dmg(ref fhp, hdmg, hkrit);
-                if(fhp <= 0){
-                    fhp = 0;
-                    ui(hp, hdmg, hlvl);
-                    fui(fhp, fdmg, flvl);
-                    Console.WriteLine("Råttan dog");
-                    hlvl++;
+                dmg(ref fiende_hp, fiende_dmg, fiende_crit);
+                if(fiende_hp <= 0){
+                    fiende_hp = 0;
+                    ui(hjälte_hp, hjälte_dmg, hjälte_lvl);
+                    fui(fiende_hp, fiende_dmg, fiende_lvl);// ska ändras om jag har mer fiender, ta väck namnet så det skrivs innan.
+                    Console.WriteLine("Råttan dog");//om jag lägger till mer fiende namn så ska den ändras.
+                    hjälte_lvl++;
                     break;
                 }
-                ui(hp, hdmg, hlvl);
-                fui(fhp, fdmg, flvl);
+                ui(hjälte_hp, hjälte_dmg, hjälte_lvl);
+                fui(fiende_hp, fiende_dmg, fiende_lvl);
             }
-            if(fhp == 0){
+            if(fiende_hp == 0){
                 Random kap = new Random();
-                flvl = hlvl + kap.Next(0, hlvl +2);
-                hvinst++;
+                fiende_lvl = hjälte_lvl + kap.Next(0, hjälte_lvl+1);
                 break;
-            }     
+            }
         }
 
         for(int a = 0; a != 1; a++){
-            f_dmg(ref hp, fdmg, fkrit);
-            if(hp <= 0){
-                hp = 0;
-                ui(hp, hdmg, hlvl);
-                fui(fhp, fdmg, flvl);
-                if(flvl >= 2){
-                    flvl--;
+            f_dmg(ref hjälte_hp, fiende_dmg, fiende_crit);
+            if(hjälte_hp <= 0){
+                hjälte_hp = 0;
+                ui(hjälte_hp, hjälte_dmg, hjälte_lvl);
+                fui(fiende_hp, fiende_dmg, fiende_lvl);
+                if(fiende_lvl >= 2){
+                    fiende_lvl--;
                 }
                 Console.WriteLine("Du dog");
                 break;
             }
             if(attack_number1 == 2){
-                if(hp == 0){
+                if(hjälte_hp == 0){
                     break;
-                }  
-            healing(ref hp, hlvl);
-            } 
-            ui(hp, hdmg, hlvl);
-            fui(fhp, fdmg, flvl);
+                }
+                healing(ref hjälte_hp, hjälte_lvl);
+            }
+            ui(hjälte_hp, hjälte_dmg, hjälte_lvl);
+            fui(fiende_hp, fiende_dmg, fiende_lvl);
         }
-        if(hp == 0){
-            fvinst++;
+        if(hjälte_hp == 0){
             break;
-        }  
-        
+        }
+
     }
+
 }
-Console.WriteLine("Du van "+ hvinst + " gånger");
-Console.WriteLine("Råttan van "+ fvinst + " gånger");
-   
 
 static void ui(int ahp, int admg, int lvl){
     string mes1 = "Du: lvl "+ lvl;
