@@ -4,7 +4,7 @@ int hp = 5 + 5 * hlvl;
 int hdmg = hlvl + 2 * hlvl;
 int hkrit = 30;
 
-int flvl = hlvl - 1;
+int flvl = hlvl;
 int fhp = 5 + 5 *flvl; 
 int fdmg = 2 * flvl;
 int fkrit = 30;
@@ -13,11 +13,12 @@ int hvinst = 0;
 int fvinst = 0;
 
 for(int hur_många_gånger = 1; hur_många_gånger != 11; hur_många_gånger++){
-    
+    if(hur_många_gånger == 1){
+        
+    }
     Console.WriteLine("test " + hur_många_gånger);
     för_att_nolla_någon_av_dem(ref hp, ref hdmg, hlvl);
     för_att_nolla_någon_av_dem1(ref fhp, ref fdmg, flvl);
-    flvl++;
     fkrit++;
     
     ui(hp, hdmg, hlvl);
@@ -26,9 +27,9 @@ for(int hur_många_gånger = 1; hur_många_gånger != 11; hur_många_gånger++){
 
     while(fhp != 0 && hp != 0){
 
-        //string enter = "skriv 1 eller 2 sen tryck enter:";
-        //sakta(enter);
-        int attack_number1 = 1;//int.Parse(Console.ReadLine());
+        string enter = "skriv 1 för att attackera eller 2 för att öka ditt hp sen tryck enter:";
+        sakta(enter, 50);
+        int attack_number1 = int.Parse(Console.ReadLine());
 
         if(attack_number1 == 1){
             Console.WriteLine("");
@@ -39,13 +40,15 @@ for(int hur_många_gånger = 1; hur_många_gånger != 11; hur_många_gånger++){
                     ui(hp, hdmg, hlvl);
                     fui(fhp, fdmg, flvl);
                     Console.WriteLine("Råttan dog");
-                    flvl++;
+                    hlvl++;
                     break;
                 }
                 ui(hp, hdmg, hlvl);
                 fui(fhp, fdmg, flvl);
             }
             if(fhp == 0){
+                Random kap = new Random();
+                flvl = hlvl + kap.Next(0, hlvl +2);
                 hvinst++;
                 break;
             }     
@@ -57,6 +60,9 @@ for(int hur_många_gånger = 1; hur_många_gånger != 11; hur_många_gånger++){
                 hp = 0;
                 ui(hp, hdmg, hlvl);
                 fui(fhp, fdmg, flvl);
+                if(flvl >= 2){
+                    flvl--;
+                }
                 Console.WriteLine("Du dog");
                 break;
             }
@@ -85,11 +91,13 @@ static void ui(int ahp, int admg, int lvl){
     string mes2 = "hp "+ ahp;
     string mes3 = "dmg "+ admg;
 
-    sakta(mes1);
+    int tid1 = 30;
+
+    sakta(mes1, tid1);
     Console.WriteLine("");
-    sakta(mes2);
+    sakta(mes2, tid1);
     Console.WriteLine("");
-    sakta(mes3);
+    sakta(mes3, tid1);
     Console.WriteLine("");
     Console.WriteLine("");
 }
@@ -99,11 +107,13 @@ static void fui(int ahp, int admg, int lvl){
     string mes2 = "hp "+ ahp;
     string mes3 = "dmg "+ admg;
 
-    sakta(mes1);
+    int tid1 = 30;
+
+    sakta(mes1, tid1);
     Console.WriteLine("");
-    sakta(mes2);
+    sakta(mes2, tid1);
     Console.WriteLine("");
-    sakta(mes3);
+    sakta(mes3, tid1);
     Console.WriteLine("");
     Console.WriteLine("");
 }
@@ -115,25 +125,27 @@ static void dmg(ref int hälsa, int skada, int krit){
     string mes1 = "Du gör ";
     string mes2 = " skada till råttan";
 
+    int tid2 = 50;
+
     if(skrit<=krit){ 
         skada = skada * 2;
         hälsa = jag_tror - skada;
 
-        sakta(mes1);
+        sakta(mes1, tid2);
 
         Console.Write(skada);
 
-        sakta(mes2);
+        sakta(mes2, tid2);
         Console.WriteLine("");
     }
     else{
         hälsa = jag_tror - skada;
 
-        sakta(mes1);
+        sakta(mes1, tid2);
 
         Console.Write(skada);
 
-        sakta(mes2);
+        sakta(mes2, tid2);
         Console.WriteLine("");
     }
 }
@@ -145,25 +157,27 @@ static void f_dmg(ref int hälsa, int skada, int krit){
     string mes1 = "Råttan gör ";
     string mes2 = " skada till dig";
 
+    int tid2 = 50;
+
     if(skrit <= krit){ 
         skada = skada * 2;
         hälsa = jag_tror - skada;
 
-        sakta(mes1);
+        sakta(mes1, tid2);
 
         Console.Write(skada);
 
-        sakta(mes2);
+        sakta(mes2, tid2);
         Console.WriteLine("");
     }
     else{
         hälsa = jag_tror - skada;
 
-        sakta(mes1);
+        sakta(mes1, tid2);
 
         Console.Write(skada);
 
-        sakta(mes2);
+        sakta(mes2, tid2);
         Console.WriteLine("");
     }
 }
@@ -176,6 +190,8 @@ static void healing(ref int hälsa, int lvl){
     string mes1 = "Medans du healar ";
     string mes2 = " hp";
 
+    int tid2 = 50;
+
     hälsa1 = hälsa1 / 3;
     hälsa2 = hälsa2 / 3;
     
@@ -187,9 +203,9 @@ static void healing(ref int hälsa, int lvl){
             hälsa1 = max - hälsa3;
         }
 
-        sakta(mes1);
+        sakta(mes1, tid2);
         Console.Write(hälsa1);
-        sakta(mes2);
+        sakta(mes2, tid2);
         Console.WriteLine("");
     }
     else{
@@ -198,18 +214,18 @@ static void healing(ref int hälsa, int lvl){
             hälsa = 10;
             hälsa1 = max - hälsa3;
         }
-        sakta(mes1);
+        sakta(mes1, tid2);
         Console.Write(hälsa1);
-        sakta(mes2);
+        sakta(mes2, tid2);
         Console.WriteLine("");
     }
     
 }
 
-static void sakta(string mes){
+static void sakta(string mes, int tid){
     foreach (char c in mes){
             Console.Write(c);
-            Thread.Sleep(0);
+            Thread.Sleep(tid);
     }
 }
 
