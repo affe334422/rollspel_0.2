@@ -12,17 +12,16 @@ int fkrit = 30;
 int hvinst = 0;
 int fvinst = 0;
 
-for(int hur_många_gånger = 1; hur_många_gånger != 1001; hur_många_gånger++){
+for(int hur_många_gånger = 1; hur_många_gånger != 11; hur_många_gånger++){
     
     Console.WriteLine("test " + hur_många_gånger);
     för_att_nolla_någon_av_dem(ref hp, ref hdmg, hlvl);
     för_att_nolla_någon_av_dem1(ref fhp, ref fdmg, flvl);
-    hlvl++;
     flvl++;
     fkrit++;
     
-    ui(hp, hdmg);
-    fui(fhp, fdmg);
+    ui(hp, hdmg, hlvl);
+    fui(fhp, fdmg, flvl);
     Console.WriteLine(fkrit);
 
     while(fhp != 0 && hp != 0){
@@ -37,13 +36,14 @@ for(int hur_många_gånger = 1; hur_många_gånger != 1001; hur_många_gånger++
                 dmg(ref fhp, hdmg, hkrit);
                 if(fhp <= 0){
                     fhp = 0;
-                    ui(hp, hdmg);
-                    fui(fhp, fdmg);
+                    ui(hp, hdmg, hlvl);
+                    fui(fhp, fdmg, flvl);
                     Console.WriteLine("Råttan dog");
+                    flvl++;
                     break;
                 }
-                ui(hp, hdmg);
-                fui(fhp, fdmg);
+                ui(hp, hdmg, hlvl);
+                fui(fhp, fdmg, flvl);
             }
             if(fhp == 0){
                 hvinst++;
@@ -55,8 +55,8 @@ for(int hur_många_gånger = 1; hur_många_gånger != 1001; hur_många_gånger++
             f_dmg(ref hp, fdmg, fkrit);
             if(hp <= 0){
                 hp = 0;
-                ui(hp, hdmg);
-                fui(fhp, fdmg);
+                ui(hp, hdmg, hlvl);
+                fui(fhp, fdmg, flvl);
                 Console.WriteLine("Du dog");
                 break;
             }
@@ -66,8 +66,8 @@ for(int hur_många_gånger = 1; hur_många_gånger != 1001; hur_många_gånger++
                 }  
             healing(ref hp, hlvl);
             } 
-            ui(hp, hdmg);
-            fui(fhp, fdmg);
+            ui(hp, hdmg, hlvl);
+            fui(fhp, fdmg, flvl);
         }
         if(hp == 0){
             fvinst++;
@@ -80,8 +80,8 @@ Console.WriteLine("Du van "+ hvinst + " gånger");
 Console.WriteLine("Råttan van "+ fvinst + " gånger");
    
 
-static void ui(int ahp, int admg){
-    string mes1 = "Du:";
+static void ui(int ahp, int admg, int lvl){
+    string mes1 = "Du: lvl "+ lvl;
     string mes2 = "hp "+ ahp;
     string mes3 = "dmg "+ admg;
 
@@ -94,8 +94,8 @@ static void ui(int ahp, int admg){
     Console.WriteLine("");
 }
 
-static void fui(int ahp, int admg){
-    string mes1 = "Råtta:";
+static void fui(int ahp, int admg, int lvl){
+    string mes1 = "Råtta: lvl "+ lvl;
     string mes2 = "hp "+ ahp;
     string mes3 = "dmg "+ admg;
 
