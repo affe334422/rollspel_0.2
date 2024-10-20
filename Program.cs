@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
-int hlvl = 10;
+int hlvl = 2;
 int hp = 5 + 5 * hlvl;
-int hdmg = 2 * hlvl + hlvl;
+int hdmg = 1+ 2* hlvl;
 int hkrit = 30;
 
 int hvinst = 0;
@@ -12,6 +12,8 @@ fight_sekvens(ref hlvl, ref hp, ref hdmg, ref hkrit);
 
 
 static void fight_sekvens(ref int lvl, ref int hp, ref int dubdmg, ref int crit){
+    Random kap = new Random();
+    
     int hjälte_lvl = lvl;
     int hjälte_hp = hp;
     int hjälte_dmg = dubdmg;
@@ -34,8 +36,10 @@ static void fight_sekvens(ref int lvl, ref int hp, ref int dubdmg, ref int crit)
 
         if(attack_number1 == 1){
             Console.WriteLine("");
+
             for(int a = 0; a != 1; a++){
                 dmg(ref fiende_hp, hjälte_dmg, hjälte_crit);
+
                 if(fiende_hp <= 0){
                     fiende_hp = 0;
                     ui(hjälte_hp, hjälte_dmg, hjälte_lvl);
@@ -48,25 +52,36 @@ static void fight_sekvens(ref int lvl, ref int hp, ref int dubdmg, ref int crit)
                 fui(fiende_hp, fiende_dmg, fiende_lvl);
             }
             if(fiende_hp == 0){
-                Random kap = new Random();
                 fiende_lvl = hjälte_lvl + kap.Next(0, hjälte_lvl+1);
                 break;
             }
         }
 
         for(int a = 0; a != 1; a++){
-            f_dmg(ref hjälte_hp, fiende_dmg, fiende_crit);
-            if(hjälte_hp <= 0){
-                hjälte_hp = 0;
-                ui(hjälte_hp, hjälte_dmg, hjälte_lvl);
-                fui(fiende_hp, fiende_dmg, fiende_lvl);
-                if(fiende_lvl >= 2){
-                    fiende_lvl--;
+            
+            int vad_ska_finde_göra = kap.Next(1,4);
+
+            if(vad_ska_finde_göra != 3){
+                f_dmg(ref hjälte_hp, fiende_dmg, fiende_crit);
+
+                if(hjälte_hp <= 0){
+                    hjälte_hp = 0;
+                    ui(hjälte_hp, hjälte_dmg, hjälte_lvl);
+                    fui(fiende_hp, fiende_dmg, fiende_lvl);
+
+                    if(fiende_lvl >= 2){
+                        fiende_lvl--;
+                    }
+                    Console.WriteLine("Du dog");
+                    break;
                 }
-                Console.WriteLine("Du dog");
-                break;
             }
+            else{
+                f_healing(ref fiende_hp, fiende_lvl);
+            }
+
             if(attack_number1 == 2){
+
                 if(hjälte_hp == 0){
                     break;
                 }
@@ -190,6 +205,43 @@ static void healing(ref int hälsa, int lvl){
     int mellan = 0;
     double potion1 = lvl + max / 3;
     string mes1 = "Medans du healar ";
+    string mes2 = " hp";
+
+    int tid2 = 50;
+
+    if(potion >= potion1 - 0.5){
+        hälsa = hälsa + potion;
+        if(hälsa >= max + 1){
+            mellan = hälsa - max;
+            potion = potion - mellan;
+            hälsa = max;
+        }
+        sakta(mes1,tid2);
+        Console.Write(potion);
+        sakta(mes2, tid2);
+        Console.WriteLine("");
+    }    
+    else{
+        hälsa = hälsa + potion + 1;
+        if(hälsa >= max + 1){
+            mellan = hälsa - max;
+            potion = potion - mellan;
+            hälsa = max;
+        }
+        sakta(mes1,tid2);
+        Console.Write(potion);
+        sakta(mes2, tid2);
+        Console.WriteLine("");
+    }
+}
+
+static void f_healing(ref int hälsa, int lvl){
+
+    int max = 5 + 5 * lvl;
+    int potion = lvl + max / 3;
+    int mellan = 0;
+    double potion1 = lvl + max / 3;
+    string mes1 = "Medans råttan healar ";
     string mes2 = " hp";
 
     int tid2 = 50;
