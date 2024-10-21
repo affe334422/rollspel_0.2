@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-int hlvl = 2;
+﻿int hlvl = 3;
 int hp = 5 + 5 * hlvl;
 int hdmg = 1+ 2* hlvl;
 int hkrit = 30;
@@ -11,6 +10,10 @@ fight_sekvens(ref hlvl, ref hp, ref hdmg, ref hkrit);
 fight_sekvens(ref hlvl, ref hp, ref hdmg, ref hkrit);
 
 if(hp == 0){
+    string mes1 = "Du förlorade två rundor";
+    sakta(mes1, 20);
+}
+else{
     string mes1 = "Du van två rundor";
     sakta(mes1, 20);
 }
@@ -100,10 +103,11 @@ static void fight_sekvens(ref int lvl, ref int hp, ref int dubdmg, ref int crit)
         }
 
     }
-
+    
+    lvl = hjälte_lvl;
     hp = hjälte_hp;
     dubdmg = hjälte_dmg;
-    lvl = hjälte_lvl;
+   
 
 }
 
