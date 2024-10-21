@@ -10,6 +10,10 @@ int fvinst = 0;
 fight_sekvens(ref hlvl, ref hp, ref hdmg, ref hkrit);
 fight_sekvens(ref hlvl, ref hp, ref hdmg, ref hkrit);
 
+if(hp == 0){
+    string mes1 = "Du van två rundor";
+    sakta(mes1, 20);
+}
 
 static void fight_sekvens(ref int lvl, ref int hp, ref int dubdmg, ref int crit){
     Random kap = new Random();
@@ -24,7 +28,8 @@ static void fight_sekvens(ref int lvl, ref int hp, ref int dubdmg, ref int crit)
     int fiende_dmg = 2 * fiende_lvl;
     int fiende_crit = 30;
 
-    Console.WriteLine("test");
+    Console.WriteLine("Fight");
+    Console.WriteLine("");
 
     ui(hjälte_hp, hjälte_dmg, hjälte_lvl);
     fui(fiende_hp, fiende_dmg, fiende_lvl);
